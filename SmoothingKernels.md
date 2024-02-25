@@ -48,7 +48,7 @@ var trace1 = {
     y: wValues,
     type: 'scatter',
     mode: 'lines',
-    name: '$\text{W(q)}$',
+    name: 'Wq',
     line: {
         color: 'blue',
         width: 2
