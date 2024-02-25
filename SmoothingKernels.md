@@ -56,7 +56,7 @@ var trace1 = {
 };
 
  var layout = {
-            title: '$\text{Plot of W(q)}$',
+            title: 'Plot of W(q)',
             plot_bgcolor: 'white',
             paper_bgcolor: 'white',
             font: {
@@ -65,14 +65,14 @@ var trace1 = {
                 color: 'black'
             },
             xaxis: {
-                title: '$q$',
+                title: 'q',
                 showgrid: false,
                 gridcolor: 'black',
                 zeroline: true,
                 range: [0,2]
             },
             yaxis: {
-                title: '$W(q)$',
+                title: 'W(q)',
                 showgrid: false,
                 gridcolor: 'black'
             }
