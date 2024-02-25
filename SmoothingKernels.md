@@ -72,7 +72,7 @@ var trace1 = {
                 range: [0,2]
             },
             yaxis: {
-                title: '$W \left( q \right)$',
+                title: '$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$',
                 showgrid: false,
                 gridcolor: 'black'
             }
