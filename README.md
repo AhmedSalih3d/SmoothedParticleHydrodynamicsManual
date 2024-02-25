@@ -4,7 +4,7 @@ This is the first step, testing website.
 
 ## Header 1
 
-[About](/SmoothingKernels.md)
+[Smoothing Kernels](SmoothingKernels.md)
 
 
 ### Header 2
