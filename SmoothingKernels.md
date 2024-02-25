@@ -72,7 +72,7 @@ var trace1 = {
                 range: [0,2]
             },
             yaxis: {
-                title: 'W(q)',
+                title: '$W \left( q \right)$',
                 showgrid: false,
                 gridcolor: 'black'
             }
