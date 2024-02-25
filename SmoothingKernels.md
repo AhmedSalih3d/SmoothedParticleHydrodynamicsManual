@@ -72,7 +72,7 @@ var trace1 = {
                 range: [0,2]
             },
             yaxis: {
-                title: '$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$',
+                title: '\\( \\text{This is a Plotly title with LaTeX: } \\frac{a}{b} \\)',
                 showgrid: false,
                 gridcolor: 'black'
             }
