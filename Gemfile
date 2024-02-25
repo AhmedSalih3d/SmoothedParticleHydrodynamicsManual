@@ -4,4 +4,5 @@ group :jekyll_plugins do
   gem 'jekyll-theme-minimal'
   gem 'webrick'
   gem 'github-pages'
+  gem 'jekyll-figure'
 end

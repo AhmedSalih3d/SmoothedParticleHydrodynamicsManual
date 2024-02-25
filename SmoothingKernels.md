@@ -8,7 +8,7 @@ The smoothing kernel is a corner stone of the SPH methodology. It describes the 
 
 ## Example of a smoothing kernel
 
-An example of a smoothing kernel is the Wendland Quintic kernel as shown in equation $\eqref{eq:wendland_quintic_kernel}$. When working with kernels, it is common to base them on a normalized distance. The operator, $\left\| \left\| () \right\| \right\|$ denotes the Euclidean distance given by, $c = sqrt(a^2+b^2)$.  $h$ is the smoothing length, a parameter deciding the cut-off of the smoothing kernel. Therefore the normalized distance used in the smoothing kernel, $q$, can be defined as: 
+An example of a smoothing kernel is the Wendland Quintic kernel as shown in equation $\eqref{eq:wendland_quintic_kernel}$. When working with kernels, it is common to base them on a normalized distance. The operator, $\left\| \left\| () \right\| \right\|$ denotes the Euclidean distance.  $h$ is the smoothing length, a parameter deciding the cut-off of the smoothing kernel. Therefore the normalized distance used in the smoothing kernel, $q$, can be defined as: 
 
 $$
 \begin{equation}
@@ -24,9 +24,10 @@ W(q) = \alpha_D \left( 1 - \frac{q}{2} \right)^4 (2q + 1) \quad \text{for} \quad
 \end{equation}
 $$
 
-Where $\alpha_D$ is equal to $\frac{7}{4\pi h^2}$ in 2D and  $\frac{21}{16\pi h^3}$ in 3D. This specific kernel is not defined in 1D, but 1D kernels do exist.
+Where $\alpha_D$ is equal to $\frac{7}{4\pi h^2}$ in 2D and  $\frac{21}{16\pi h^3}$ in 3D. This specific kernel is not defined in 1D, but 1D kernels do exist. For simplicity, taking $\alpha_D = 1$ for now and visualizing it:
 
 <!-- Plot container -->
+{% figure caption:"Graph of the Wendland kernel showcasing the weighting influence as a function of the normalized distance between material points" label:plot_wendlandkernel %}
 <div id="KernelPlot" style="width: 480px; height: 400px;"></div>
 <script>
     // Define kernel function
@@ -45,7 +46,7 @@ Where $\alpha_D$ is equal to $\frac{7}{4\pi h^2}$ in 2D and  $\frac{21}{16\pi h^
         y: wValues,
         type: 'scatter',
         mode: 'lines',
-        name: '$W \left( q \right)$',
+        name: 'W \left( q \right)',
         line: {
             color: 'black',
             width: 2
@@ -55,7 +56,6 @@ Where $\alpha_D$ is equal to $\frac{7}{4\pi h^2}$ in 2D and  $\frac{21}{16\pi h^
                 title: 'Plot of W(q)',
                 plot_bgcolor: 'white',
                 paper_bgcolor: 'white',
-                showlegend: 'true',
                 font: {
                     family: 'Serif',
                     size: 18,
@@ -77,3 +77,31 @@ Where $\alpha_D$ is equal to $\frac{7}{4\pi h^2}$ in 2D and  $\frac{21}{16\pi h^
     var data = [trace1];
     Plotly.newPlot('KernelPlot', data, layout, {displayModeBar: true, responsive: true});
 </script>
+{% endfigure %}
+
+As seen in {% figref plot_wendlandkernel %} as $q$ goes from 0 to 2, the weighting decreases. Since $q$ is the euclidean distance between material points, this makes intuitively sense - it is expected that a particle closer by should be weighted higher than one further away. In reality material points at extreme distances can still affect each other very slightly. This is what can be shown through the Gaussian kernel, which goes towards zero as $q$ goes towards infinity. From a numerical modelling perspective this is not attractive, which is why numerical kernels mimicking the Gaussian kernel, but with a finite cut-off is preferred, for numerical simulation speed.
+
+## Properties of a smoothing kernel
+
+At the end of the day the choice of smoothing kernel is a decision taken "arbitrarily", in the sense that if a few mathematical constraints are upheld, then the smoothing kernel can be "mathematically" justified. In brief:
+
+* As the smoothing length, $h$ approaches zero, the weighting function, $W$ approach the dirac-delta identity. 
+* The volume integral of the weighted function in its specified domain should equal unity (1). To ensure that over-weighting is not possible.
+
+In practical terms, since the aim is to simulate physics, some practical considerations should be taking into account. A non-comprehensive list is provided below, specifically for computational fluid dynamics, considering a three dimensional space:
+
+1. Evenly distributed volume support domain
+* The spatial volume of the kernel support domain should not differ in the spatial directions 
+2. Radial symmetric
+* Influences approaching the material points from the same distance but different orientations, should produce the same weighting
+3. Compact support
+* The kernel should have a finite cut-off for numerical simulation practicalities
+4. Positive smoothing length
+* The kernel cut-off radius must be positive
+5. Monotonically decreasing
+* As $q$ gets larger, the weighting should decrease consistently
+6. Differentiable
+* Simulation of computational fluid dynamics requires derivatives, the weighting function, the basis of the simulation approach must be differentiable, preferably more than twice
+
+For the first point, the "ground truth" is often taken as a spherical support domain for the kernel, i.e. a spherical volume around the material point. In theory a box with equal side lengths would fulfill the criteria as well, but the added complexity does not seem to provide any real benefits. 
+

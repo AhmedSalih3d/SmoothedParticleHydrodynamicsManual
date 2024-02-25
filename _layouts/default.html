@@ -11,8 +11,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
     {% include head-custom.html %}
-    <!-- Plotly.js -->
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <!-- MathJax configuration -->
     <script>
       MathJax = {
@@ -24,14 +22,17 @@
         svg: {
           fontCache: 'global'
         },
-        Macros: {
-          vec: ["{\\mathbf{#1}}", 1]
-        }
       };
     </script>
     <script type="text/javascript" id="MathJax-script" async
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
     </script>
+    <!-- Set the PlotlyConfig ... unsure why, but figures don't work without it! -->
+    <script>
+      window.PlotlyConfig = {MathJaxConfig: 'local'}; 
+    </script>
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   </head>
   <body>
     <div class="wrapper">
