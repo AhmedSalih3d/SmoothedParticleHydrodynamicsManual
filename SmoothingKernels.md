@@ -48,6 +48,7 @@ var trace1 = {
     y: wValues,
     type: 'scatter',
     mode: 'lines',
+    color: 'black',
     name: '$W \left( q \right)$',
     line: {
         color: 'blue',
@@ -59,6 +60,7 @@ var trace1 = {
             title: 'Plot of W(q)',
             plot_bgcolor: 'white',
             paper_bgcolor: 'white',
+            show_legend: 'true',
             font: {
                 family: 'Serif',
                 size: 18,
