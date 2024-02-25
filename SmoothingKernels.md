@@ -12,8 +12,15 @@ $$
 
 Where $\alpha_D$ is equal to $\frac{7}{4\pi h^2}$ in 2D and  $\frac{21}{16\pi h^3}$ in 3D. $\eqref{eq:wendland_quintic_kernel}$
 
-<div class="special-class">
-1. Nope
-1. Not 
-1. Happening
-</div>
+<!-- Plot container -->
+<div id="myPlot" style="width:100%;max-width:600px;height:400px;"></div>
+
+<script>
+  var data = [{
+    x: [1, 2, 3, 4],
+    y: [10, 11, 12, 13],
+    type: 'scatter'
+  }];
+
+  Plotly.newPlot('myPlot', data);
+</script>
