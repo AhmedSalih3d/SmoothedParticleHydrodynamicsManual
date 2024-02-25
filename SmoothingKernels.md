@@ -55,23 +55,27 @@ var trace1 = {
     }
 };
 
-var layout = {
-    title: 'Plot of W(q)',
-    xaxis: {
-        title: 'q',
-        showgrid: true,
-        zeroline: true
-    },
-    yaxis: {
-        title: '\\(W(q)\\)',
-        showline: true
-    },
-    margin: {
-        t: 40
-    },
-    plot_bgcolor: "#e5ecf6",
-    paper_bgcolor: "#e5ecf6"
-};
+ var layout = {
+            title: 'Plot of W(q)',
+            plot_bgcolor: 'white',
+            paper_bgcolor: 'white',
+            font: {
+                family: 'Computer Modern, serif',
+                size: 18,
+                color: 'black'
+            },
+            xaxis: {
+                title: 'q',
+                showgrid: true,
+                gridcolor: 'black',
+                zeroline: true
+            },
+            yaxis: {
+                title: 'W(q)',
+                showgrid: true,
+                gridcolor: 'black'
+            }
+        };
 
 var data = [trace1];
 
