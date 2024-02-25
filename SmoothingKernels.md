@@ -48,11 +48,10 @@ var trace1 = {
     y: wValues,
     type: 'scatter',
     mode: 'lines',
-    color: 'black',
     name: '$W \left( q \right)$',
     show_legend: 'true',
     line: {
-        color: 'blue',
+        color: 'black',
         width: 2
     }
 };
