@@ -1,3 +1,7 @@
+---
+title: Title2
+---
+
 # Smoothed Particle Hydrodynamics Manual
 
 This is the first step, testing website. 
