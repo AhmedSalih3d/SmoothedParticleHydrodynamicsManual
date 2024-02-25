@@ -102,6 +102,8 @@ In practical terms, since the aim is to simulate physics, some practical conside
 * As $q$ gets larger, the weighting should decrease consistently
 6. Differentiable
 * Simulation of computational fluid dynamics requires derivatives, the weighting function, the basis of the simulation approach must be differentiable, preferably more than twice
+7. Positive weighting values
+* For all valid values of $q$ the kernel must return a value greater than or equal to zero
 
-For the first point, the "ground truth" is often taken as a spherical support domain for the kernel, i.e. a spherical volume around the material point. In theory a box with equal side lengths would fulfill the criteria as well, but the added complexity does not seem to provide any real benefits. 
+For the first point, the "ground truth" is often taken as a spherical support domain for the kernel, i.e. a spherical volume around the material point. In theory a box with equal side lengths would fulfill the criteria as well, but the added complexity does not seem to provide any real benefits. The list of considerations above are not necessarily mathematical. For example it is indeed possible to define a kernel fulfilling the mathematical criterias, but violating some of the items mentionedh here. One example of why these considerations still are of utmost importance, is that when later, the density estimation through the kernel operator will be discussed, it is clear that a kernel violating the criteria of positive weighting values will lead to negative density values! This of course goes against the physics intended to be modelled.
 
