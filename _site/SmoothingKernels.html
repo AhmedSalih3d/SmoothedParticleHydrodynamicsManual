@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Smoothing Kernels | Smoothed Particle Hydrodynamics Manual</title>
+<meta name="generator" content="Jekyll v3.9.5" />
+<meta property="og:title" content="Smoothing Kernels" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive guide to Smoothed Particle Hydrodynamics (SPH), offering a deep dive into SPH principles and applications. Designed for researchers, engineers, and students, it covers foundational concepts, advanced techniques, and practical examples for effective SPH implementation in scientific and engineering projects." />
+<meta property="og:description" content="A comprehensive guide to Smoothed Particle Hydrodynamics (SPH), offering a deep dive into SPH principles and applications. Designed for researchers, engineers, and students, it covers foundational concepts, advanced techniques, and practical examples for effective SPH implementation in scientific and engineering projects." />
+<link rel="canonical" href="http://localhost:4000/SmoothingKernels.html" />
+<meta property="og:url" content="http://localhost:4000/SmoothingKernels.html" />
+<meta property="og:site_name" content="Smoothed Particle Hydrodynamics Manual" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Smoothing Kernels" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive guide to Smoothed Particle Hydrodynamics (SPH), offering a deep dive into SPH principles and applications. Designed for researchers, engineers, and students, it covers foundational concepts, advanced techniques, and practical examples for effective SPH implementation in scientific and engineering projects.","headline":"Smoothing Kernels","url":"http://localhost:4000/SmoothingKernels.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=fc49bb5379118491050bac1360d25799acb76a24">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- MathJax configuration -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']],
+          tags: 'ams'
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1><a href="http://localhost:4000/">Smoothed Particle Hydrodynamics Manual</a></h1>
+
+        
+
+        <p>A comprehensive guide to Smoothed Particle Hydrodynamics (SPH), offering a deep dive into SPH principles and applications. Designed for researchers, engineers, and students, it covers foundational concepts, advanced techniques, and practical examples for effective SPH implementation in scientific and engineering projects.</p>
+
+        
+        <p class="view"><a href="https://github.com/AhmedSalih3d/SmoothedParticleHydrodynamicsManual">View the Project on GitHub <small>AhmedSalih3d/SmoothedParticleHydrodynamicsManual</small></a></p>
+        
+
+        
+
+        
+      </header>
+      <section>
+
+      <h1 id="smoothing-kernels">Smoothing Kernels</h1>
+
+<p>Now we are here!</p>
+
+<p>Recall that <code class="language-plaintext highlighter-rouge">q</code> is defined as $q = r/h$.</p>
+
+\[\begin{equation}
+W(q) = \alpha_D \left( 1 - \frac{q}{2} \right)^4 (2q + 1) \quad \text{for} \quad 0 \leq q \leq 2 \label{eq:wendland_quintic_kernel}
+\end{equation}\]
+
+<p>Where $\alpha_D$ is equal to $\frac{7}{4\pi h^2}$ in 2D and  $\frac{21}{16\pi h^3}$ in 3D. $\eqref{eq:wendland_quintic_kernel}$</p>
+
+<!-- Plot container -->
+<div id="myPlot" style="width:100%;max-width:600px;height:400px;"></div>
+
+<script>
+  var data = [{
+    x: [1, 2, 3, 4],
+    y: [10, 11, 12, 13],
+    type: 'scatter'
+  }];
+
+  Plotly.newPlot('myPlot', data);
+</script>
+
+<!-- Plot container -->
+<div id="myDiv" style="width: 480px; height: 400px;"></div>
+<script>
+// Define the function W(q)
+function W(q, alphaD) {
+    return alphaD * Math.pow((1 - q/2), 4) * (2*q + 1);
+}
+
+// Generate data
+var qValues = [];
+var wValues = [];
+var alphaD = 7 / (4 * Math.PI); // For 2D, as an example
+for(var q = 0; q <= 2; q += 0.01) {
+    qValues.push(q);
+    wValues.push(W(q, alphaD));
+}
+
+// Create the plot
+var trace1 = {
+    x: qValues,
+    y: wValues,
+    type: 'scatter',
+    mode: 'lines',
+    name: '$W \left( q \right)$',
+    line: {
+        color: 'black',
+        width: 2
+    }
+};
+
+ var layout = {
+            title: 'Plot of W(q)',
+            plot_bgcolor: 'white',
+            paper_bgcolor: 'white',
+            showlegend: 'true',
+            font: {
+                family: 'Serif',
+                size: 18,
+                color: 'black'
+            },
+            xaxis: {
+                title: 'q',
+                showgrid: false,
+                gridcolor: 'black',
+                zeroline: true,
+                range: [0,2]
+            },
+            yaxis: {
+                title: 'W(q)',
+                showgrid: false,
+                gridcolor: 'black'
+            }
+        };
+
+var data = [trace1];
+
+Plotly.newPlot('myDiv', data, layout, {displayModeBar: true, responsive: true});
+</script>
+
+
+
+      </section>
+      <footer>
+        
+        <p>This project is maintained by <a href="https://github.com/AhmedSalih3d">AhmedSalih3d</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/assets/js/scale.fix.js"></script>
+  </body>
+</html>
