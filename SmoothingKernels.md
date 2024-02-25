@@ -49,7 +49,7 @@ var trace1 = {
     type: 'scatter',
     mode: 'lines',
     name: '$W \left( q \right)$',
-    show_legend: 'true',
+    showlegend: 'true',
     line: {
         color: 'black',
         width: 2
