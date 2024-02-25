@@ -1,8 +1,22 @@
 # Smoothing Kernels
 
-Now we are here!
+The smoothing kernel is a corner stone of the SPH methodology. It describes the weighting between material points and thereby affects every single step of a simulation. It is the approximation of the dirac-delta identity and without it, this form of the numerical method would not be achievable. This section seeks to answer the following questions.
 
-Recall that `q` is defined as $q = r/h$.
+1. What is a smoothing kernel
+2. What properties does a smoothing kernel have
+
+
+## Example of a smoothing kernel
+
+An example of a smoothing kernel is the Wendland Quintic kernel as shown in equation $\eqref{eq:wendland_quintic_kernel}$. When working with kernels, it is common to base them on a normalized distance. The operator, $\left\| \left\| () \right\| \right\|$ denotes the Euclidean distance given by, $c = sqrt(a^2+b^2)$.  $h$ is the smoothing length, a parameter deciding the cut-off of the smoothing kernel. Therefore the normalized distance used in the smoothing kernel, $q$, can be defined as: 
+
+$$
+\begin{equation}
+q = \left\|  \mathbf{x}_{ij}  \right\| /h. \label{eq:q}
+\end{equation}
+$$
+
+The smoothing kernel will most of the time have a shape similar to a Gaussian distribution. For the time being the Wendland Quintic kernel given in equation $\eqref{eq:wendland_quintic_kernel}$ is used as an example:  
 
 $$
 \begin{equation}
@@ -10,7 +24,7 @@ W(q) = \alpha_D \left( 1 - \frac{q}{2} \right)^4 (2q + 1) \quad \text{for} \quad
 \end{equation}
 $$
 
-Where $\alpha_D$ is equal to $\frac{7}{4\pi h^2}$ in 2D and  $\frac{21}{16\pi h^3}$ in 3D. $\eqref{eq:wendland_quintic_kernel}$
+Where $\alpha_D$ is equal to $\frac{7}{4\pi h^2}$ in 2D and  $\frac{21}{16\pi h^3}$ in 3D. This specific kernel is not defined in 1D, but 1D kernels do exist.
 
 <!-- Plot container -->
 <div id="KernelPlot" style="width: 480px; height: 400px;"></div>
