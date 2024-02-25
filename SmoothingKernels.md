@@ -60,7 +60,7 @@ var trace1 = {
             plot_bgcolor: 'white',
             paper_bgcolor: 'white',
             font: {
-                family: 'Computer Modern, serif',
+                family: 'Serif',
                 size: 18,
                 color: 'black'
             },
@@ -72,7 +72,7 @@ var trace1 = {
                 range: [0,2]
             },
             yaxis: {
-                title: '\\( \\text{This is a Plotly title with LaTeX: } \\frac{a}{b} \\)',
+                title: 'W(q)',
                 showgrid: false,
                 gridcolor: 'black'
             }
