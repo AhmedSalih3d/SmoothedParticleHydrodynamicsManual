@@ -50,6 +50,7 @@ var trace1 = {
     mode: 'lines',
     color: 'black',
     name: '$W \left( q \right)$',
+    show_legend: 'true',
     line: {
         color: 'blue',
         width: 2
@@ -60,7 +61,6 @@ var trace1 = {
             title: 'Plot of W(q)',
             plot_bgcolor: 'white',
             paper_bgcolor: 'white',
-            show_legend: 'true',
             font: {
                 family: 'Serif',
                 size: 18,
