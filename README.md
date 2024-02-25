@@ -5,8 +5,8 @@ This manual intends to cover the various topics necessary for gaining an in-dept
 ## List of Content
 
 <!--- [Navier-Stokes Equation](NavierStokesEquatin.html) -->
-[Particle Discretization](ParticleDiscretization.html)
-[Smoothing Kernels](SmoothingKernels.html)
+* [Particle Discretization](ParticleDiscretization.html)
+* [Smoothing Kernels](SmoothingKernels.html)
 
 
 ### Header 2
