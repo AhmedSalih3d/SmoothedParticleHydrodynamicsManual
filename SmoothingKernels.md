@@ -48,7 +48,7 @@ var trace1 = {
     y: wValues,
     type: 'scatter',
     mode: 'lines',
-    name: 'W(q)',
+    name: '$\text{W(q)}$',
     line: {
         color: 'blue',
         width: 2
@@ -56,7 +56,7 @@ var trace1 = {
 };
 
  var layout = {
-            title: 'Plot of W(q)',
+            title: '$\text{Plot of W(q)}$',
             plot_bgcolor: 'white',
             paper_bgcolor: 'white',
             font: {
@@ -65,14 +65,15 @@ var trace1 = {
                 color: 'black'
             },
             xaxis: {
-                title: 'q',
-                showgrid: true,
+                title: '$q$',
+                showgrid: false,
                 gridcolor: 'black',
-                zeroline: true
+                zeroline: true,
+                range: [0,2]
             },
             yaxis: {
-                title: 'W(q)',
-                showgrid: true,
+                title: '$W(q)$',
+                showgrid: false,
                 gridcolor: 'black'
             }
         };
