@@ -22,7 +22,7 @@ q = \left\|  \mathbf{x}_{ij}  \right\| /h. \label{eq:q}
 \end{equation}
 $$
 
-The smoothing kernel will most of the time have a shape similar to a Gaussian distribution. For the time being the Wendland Quintic kernel given in equation $\eqref{eq:wendland_quintic_kernel}$ is used as an example:  
+The smoothing kernel will most of the time have a shape similar to a bell-shaped distribution. For the time being the Wendland Quintic kernel given in equation $\eqref{eq:wendland_quintic_kernel}$ is used as an example:  
 
 $$
 \begin{equation}
@@ -98,12 +98,14 @@ In practical terms, since the aim is to simulate physics, some practical conside
 
 1. Evenly distributed volume support domain
 * The spatial volume of the kernel support domain should not differ in the spatial directions 
-2. Radial symmetric
+2. Radial symmetry
 * Influences approaching the material points from the same distance but different orientations, should produce the same weighting
 3. Compact support
 * The kernel should have a finite cut-off for numerical simulation practicalities
 4. Positive smoothing length
 * The kernel cut-off radius must be positive
+4. Constant smoothing length
+* The value of $h$ is constant. There is no physical or mathematical reason this *has* to be the case, but it is what is assumed for the following derivations.
 5. Monotonically decreasing
 * As $q$ gets larger, the weighting should decrease consistently
 6. Differentiable
@@ -115,8 +117,60 @@ For the first point, the "ground truth" is often taken as a spherical support do
 
 ## Different kinds of smoothing kernels
 
-1) Gaussian kernel
-2) Wendland Quintic kernel
-3) Spline kernels
+Smoothing kernels are of many different kinds and have each their own benefits and detriments. Benefits and detriments can range between the different necessary kernel cut-off radii, the different levels of differentiability, the different levels of computational performance and so forth. Three types of kernels are shown below. Once again the Wendland quintic kernel is provided, due to its simple formulation in equation $\eqref{eq:wendland_kernel}$, the Gaussian kernel is shown in equation $\eqref{eq:gaussian_kernel}$ and finally the cubic spline as seen in equation $\eqref{eq:cubic_spline_kernel}$.
+
+**1. Gaussian kernel**
+$$
+\begin{equation}
+W(q) = \alpha_D \exp(  -q^2)
+\label{eq:gaussian_kernel}
+\end{equation}
+$$
+
+**2. Wendland Quintic kernel**
+$$
+\begin{equation}
+W(q) = \alpha_D \left( 1 - \frac{q}{2} \right)^4 (2q + 1) \quad \text{for} \quad 0 \leq q \leq 2 
+\label{eq:wendland_kernel}
+\end{equation}
+$$
+
+**3. Cubic spline kernel**
+$$
+\begin{equation}
+W(q) = \alpha_D
+\begin{cases}
+1 - \frac{3}{2}q^2 + \frac{3}{4}q^3 & \text{for} \quad 0 \leq q \leq 1 \\
+\frac{1}{4}(2-q)^3                  & \text{for} \quad 1 < q \leq 2 \\
+0                                   & \text{for} \quad q > 2
+\end{cases}
+\label{eq:cubic_spline_kernel}
+\end{equation}
+$$
+
+These three types of kernels highlight some of the most common types encountered in literature and simulation software. In purely graphical simulations, where physical accuracy takes a back-seat some other kernels can be found.
+
+As mentioned previously, the kernels must fulfill the unity condition:
+
+$$
+\begin{equation}
+\int_{\mathbb{R}^d} W(\mathbf{x} - \mathbf{x}',h) \hspace{1mm} dV = \int_{\mathbb{R}^d} \alpha_D  \hspace{1mm} w(\mathbf{x} - \mathbf{x}',h) \hspace{1mm} dV = 1
+\end{equation}
+$$
+
+Where $\mathbb{R}^d$ is the dimensions. Notice the succint difference between $W$ and $w$ in the equation. This is where the kernel normalization constant, $\alpha_D$ comes in since it ensures that for any choice of positive $h$ the unity condition is fulfilled. To solve for the kernel normalization constants, the following assumptions are taken:
+
+1. A spherical kernel support volume
+* Therefore integration is in 1D over a line, in 2D over a circular area and in 3D over a spherical volume
+2. Radial symmetry
+* Which means, that the kernel cut-off radius, $H = \kappa*h$, where $\kappa$ is often taken as 2, is the limit of integration on both sides. The Gaussian kernel is a special case with limits of integration from $-\infty$ to $+\infty$.
+
+With these assumptions in place it is possible to solve for the correct value of $\alpha_D$ using the following generalized integral:
+
+$$
+\begin{equation}
+\int_{\mathbb{R}^d}
+\end{equation}
+$$
 
 {% cite ruby --file papers%}
