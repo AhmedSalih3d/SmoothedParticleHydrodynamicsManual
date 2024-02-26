@@ -5,4 +5,5 @@ group :jekyll_plugins do
   gem 'webrick'
   gem 'github-pages'
   gem 'jekyll-figure'
+  gem 'jekyll-scholar'
 end
