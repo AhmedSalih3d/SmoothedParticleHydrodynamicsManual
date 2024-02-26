@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: subpage
 full-width: true
 ---
 # Smoothing Kernels
