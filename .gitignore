@@ -1,2 +1,3 @@
 # Ignore the default folder _site
 _site
+.sass-cache/*
