@@ -1,5 +1,6 @@
 ---
 layout: default
+full-width: true
 ---
 # Smoothing Kernels
 
@@ -155,6 +156,7 @@ As mentioned previously, the kernels must fulfill the unity condition:
 $$
 \begin{equation}
 \int_{\mathbb{R}^d} W(\mathbf{x} - \mathbf{x}',h) \hspace{1mm} dV = \int_{\mathbb{R}^d} \alpha_D  \hspace{1mm} w(\mathbf{x} - \mathbf{x}',h) \hspace{1mm} dV = 1
+\label{eq:unity_condition}
 \end{equation}
 $$
 
@@ -162,15 +164,74 @@ Where $\mathbb{R}^d$ is the dimensions. Notice the succint difference between $W
 
 1. A spherical kernel support volume
 * Therefore integration is in 1D over a line, in 2D over a circular area and in 3D over a spherical volume
-2. Radial symmetry
-* Which means, that the kernel cut-off radius, $H = \kappa*h$, where $\kappa$ is often taken as 2, is the limit of integration on both sides. The Gaussian kernel is a special case with limits of integration from $-\infty$ to $+\infty$.
+2. Radial symmetry (even function)
+* The integration must be done over the whole volume. One way of doing that is described here. Using the kernel cut-off radius, $H = \kappa h$, where $\kappa$ is often taken as 2, the integration range is from 0 up to $H$. This is due to the circular/spherical nature of the integration, imagine revolution integral to encompass the volume. The Gaussian kernel is a special case with limits of integration from $-\infty$ to $+\infty$.
 
 With these assumptions in place it is possible to solve for the correct value of $\alpha_D$ using the following generalized integral:
 
 $$
 \begin{equation}
-\int_{\mathbb{R}^d}
+\alpha_D  = \frac{1}{\int_{\mathbb{R}^d} w(\mathbf{x} - \mathbf{x}',h) \hspace{1mm} dV}
+\label{eq:solve_for_ad}
 \end{equation}
 $$
+
+Where the first step of deriving equation $\eqref{eq:solve_for_ad}$ is the assumption of $h$ being constant and thereby able to move it out from the inner part of the integration in equation $\eqref{eq:unity_condition}$. The volume element, $dV$ changes based on dimensionality, for example for 2D, using polar coordinates, which is definitely the simplest for these kernels, $dV$ would be $r dr d\theta$, where r is the "radius", distance between a point and kernel origin. Basically, $r = \mathbf{x} - \mathbf{x}'$, when it has been concretized.
+
+```python
+
+from sympy import symbols, integrate, pi, sin
+def calculate_normalization_constant(w, dimensionality, kappa=2):
+    # Define the symbols
+    r, h, theta, phi = symbols('r h theta phi', real=True, positive=True)
+    alpha_D = symbols('alpha_D', real=True, positive=True)  # Normalization constant
+    
+    # Define the volume elements for different dimensions
+    volume_elements = {
+        1: 1,                               # Line
+        2: r,                               # Circle (polar coordinates)
+        3: r**2*sin(phi)                    # Sphere (spherical coordinates)
+    }
+    # Define the integration limits for different dimensions
+    integration_limits = {
+        1: (r, -kappa*h, kappa*h),          # Line
+        2: ((r, 0, kappa*h), (theta, 0, 2*pi)),                 # Circle
+        3: ((r, 0, kappa*h), (theta, 0, 2*pi), (phi, 0, pi))    # Sphere
+    }
+    # Select the appropriate volume element and limits for the given dimensionality
+    volume_element = volume_elements[dimensionality]
+    limits = integration_limits[dimensionality]
+    # Perform the integration
+    if dimensionality == 1:
+        integral = integrate(w.subs(q,r/h) * volume_element, limits)
+    elif dimensionality == 2:
+        integral = integrate(w.subs(q,r/h) * volume_element, *limits) 
+    elif dimensionality == 3:
+        integral = integrate(w.subs(q,r/h) * volume_element, *limits) 
+    # Solve for the normalization constant alpha_D
+    alpha_D_value = 1 / integral
+    return alpha_D_value.simplify()
+# Define q
+q = symbols('q', real=True, positive=True)
+# Define the Wendland Quintic kernel function w(q)
+w = (1 - q / 2)**4 * (2 * q + 1)
+
+# Calculate the normalization constant for 2D
+alpha_D_2d = calculate_normalization_constant(w, 2, 2)
+
+# Calculate the normalization constant for 3D
+alpha_D_3d = calculate_normalization_constant(w, 3, 2)
+
+alpha_D_2d, alpha_D_3d
+
+```
+
+When this code is ran the $\alpha_D$ values for the Wendland quintic kernel is output as:
+
+```python
+
+alpha_D_2d = (7/(4*pi*h**2)
+alpha_D_3d = 21/(16*pi*h**3))
+```
 
 {% cite ruby --file papers%}
