@@ -178,8 +178,7 @@ $$
 
 Where the first step of deriving equation $\eqref{eq:solve_for_ad}$ is the assumption of $h$ being constant and thereby able to move it out from the inner part of the integration in equation $\eqref{eq:unity_condition}$. The volume element, $dV$ changes based on dimensionality, for example for 2D, using polar coordinates, which is definitely the simplest for these kernels, $dV$ would be $r dr d\theta$, where r is the "radius", distance between a point and kernel origin. Basically, $r = \mathbf{x} - \mathbf{x}'$, when it has been concretized.
 
-```python
-
+```py
 from sympy import symbols, integrate, pi, sin
 def calculate_normalization_constant(w, dimensionality, kappa=2):
     # Define the symbols
@@ -188,19 +187,19 @@ def calculate_normalization_constant(w, dimensionality, kappa=2):
     
     # Define the volume elements for different dimensions
     volume_elements = {
-        1: 1,                               # Line
-        2: r,                               # Circle (polar coordinates)
-        3: r**2*sin(phi)                    # Sphere (spherical coordinates)
+        1: 1,             # Line
+        2: r,             # Circle (polar coordinates)
+        3: r**2*sin(phi)  # Sphere (spherical coordinates)
     }
     # Define the integration limits for different dimensions
     integration_limits = {
-        1: (r, -kappa*h, kappa*h),          # Line
+        1: (r, -kappa*h, kappa*h),                              # Line
         2: ((r, 0, kappa*h), (theta, 0, 2*pi)),                 # Circle
         3: ((r, 0, kappa*h), (theta, 0, 2*pi), (phi, 0, pi))    # Sphere
     }
     # Select the appropriate volume element and limits for the given dimensionality
     volume_element = volume_elements[dimensionality]
-    limits = integration_limits[dimensionality]
+    limits         = integration_limits[dimensionality]
     # Perform the integration
     if dimensionality == 1:
         integral = integrate(w.subs(q,r/h) * volume_element, limits)
@@ -223,13 +222,11 @@ alpha_D_2d = calculate_normalization_constant(w, 2, 2)
 alpha_D_3d = calculate_normalization_constant(w, 3, 2)
 
 alpha_D_2d, alpha_D_3d
-
 ```
 
 When this code is ran the $\alpha_D$ values for the Wendland quintic kernel is output as:
 
 ```python
-
 alpha_D_2d = (7/(4*pi*h**2)
 alpha_D_3d = 21/(16*pi*h**3))
 ```

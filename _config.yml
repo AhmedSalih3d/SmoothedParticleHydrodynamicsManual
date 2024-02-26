@@ -4,4 +4,4 @@ theme: jekyll-theme-minimal
 repository: AhmedSalih3d/SmoothedParticleHydrodynamicsManual
 #absolute_url: "https://ahmedsalih3d.github.io/SmoothedParticleHydrodynamicsManual/"
 url: "https://ahmedsalih3d.github.io/SmoothedParticleHydrodynamicsManual" # The base hostname & protocol for your site
-highlighter: rogue
+highlighter: rouge
