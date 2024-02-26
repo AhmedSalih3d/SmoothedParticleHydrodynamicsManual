@@ -4,9 +4,11 @@ This manual intends to cover the various topics necessary for gaining an in-dept
 
 ## List of Content
 
-<!--- [Navier-Stokes Equation](NavierStokesEquatin.html) -->
+* [Quick intro of SPH]
+* [Commericial Software]
 * [Particle Discretization](ParticleDiscretization.html)
 * [Smoothing Kernels](SmoothingKernels.html)
-
-
-### Header 2
+* [Property estimation]
+* [Derivatives of the Smoothing Kernel]
+* [Improving property estimation]
+* [Modelling the Navier-Stokes Equation]

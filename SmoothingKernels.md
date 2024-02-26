@@ -5,6 +5,8 @@ The smoothing kernel is a corner stone of the SPH methodology. It describes the 
 1. What is a smoothing kernel
 2. What properties does a smoothing kernel have
 3. Different kind of smoothing kernels
+4. Smoothing kernel constant
+
 
 
 ## Example of a smoothing kernel
