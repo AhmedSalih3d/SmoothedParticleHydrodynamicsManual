@@ -231,4 +231,43 @@ alpha_D_2d = (7/(4*pi*h**2)
 alpha_D_3d = 21/(16*pi*h**3))
 ```
 
+<script type="text/tikz">
+  \pgfmathsetseed{1234}
+  \colorlet{purple}{blue!50!red!80!black!80}
+  \begin{tikzpicture}[font=\huge]
+  % Define radius of the circle
+  \def\Radius{5}
+  % Draw the big circle
+  \draw [thick, dashed, fill=pink, fill opacity=0.5] (0,0) circle (\Radius cm);
+  % Draw particles
+  \foreach \angle in {0,5,...,360} {
+    \node [circle,fill=blue,inner sep=2pt, opacity=0.2] at ({sqrt(rand*0.5+0.5)*\Radius*cos(\angle)}, {sqrt(rand*0.5+0.5)*\Radius*sin(\angle)}) {};
+  }
+  % Draw boundary annotations
+  \draw [thick, dashed] (\Radius,0) arc [start angle=0, end angle=180, radius=\Radius cm];
+  \node at ({1.15*\Radius*cos(45)}, {1.15*\Radius*sin(45)}) {$\partial \cap_S$};
+  \node at ({0.75*\Radius*cos(45)}, {0.75*\Radius*sin(45)}) {$\partial \cap_V$};
+  % Draw dashed zero line
+  \draw [dashed, thick, ->] (-\Radius,0) -- (\Radius,0);
+  % Draw the kernel W
+  \draw [thick, ->] (0,0) -- (0,{\Radius*(2/3)}) node [right, fill=none] {$W$};
+  % Draw the q vector
+  \draw [thick, ->] (0,0) -- ({\Radius/2},0) node [below] {$q$};
+  % Draw the kh vector
+  \draw [very thick, ->, purple] (0,0) -- ({\Radius*cos(-25)}, {-\Radius*sin(25)}) node [right,color=purple] {$kh$};
+  % Create nodes i and j with names for referencing
+  \node [circle, fill=green, inner sep=2pt] (i) at (0,0) {}; % Name this node (i)
+  \node [circle, fill=yellow, inner sep=2pt] (j) at (-\Radius*0.75,-\Radius*0.25) {}; % Name this node (j)
+  % Label for node i
+  \node [label=below:$i$, inner sep=2pt] at (i) {};
+  % Label for node j
+  \node [label=left:$j$, inner sep=2pt] at (j) {};
+  % Draw the xi - xj vector using the named nodes
+  \draw [very thick, <->] (j) -- (i) node [midway, sloped, below] {$\|\mathbf{x}_i$ - $\mathbf{x}_j\|$};
+  % Draw Wendland quintic kernel, aD = 2
+  \draw [thick, domain=0:2, smooth, variable=\q, -] plot ({\q*\Radius/2}, {2*pow(1-\q/2,4)*(2*\q+1)});
+  \draw [thick, domain=0:2, smooth, variable=\q, -] plot ({-\q*\Radius/2}, {2*pow(1-\q/2,4)*(2*\q+1)});
+\end{tikzpicture}
+</script>
+
 {% cite ruby --file papers%}
