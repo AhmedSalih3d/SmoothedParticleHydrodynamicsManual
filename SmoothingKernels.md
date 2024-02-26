@@ -116,3 +116,4 @@ For the first point, the "ground truth" is often taken as a spherical support do
 2) Wendland Quintic kernel
 3) Spline kernels
 
+{% cite ruby %}
