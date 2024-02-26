@@ -245,8 +245,8 @@ alpha_D_3d = 21/(16*pi*h**3))
   }
   % Draw boundary annotations
   \draw [thick, dashed] (\Radius,0) arc [start angle=0, end angle=180, radius=\Radius cm];
-  \node at ({1.15*\Radius*cos(45)}, {1.15*\Radius*sin(45)}) {$\partial \cap_S$};
-  \node at ({0.75*\Radius*cos(45)}, {0.75*\Radius*sin(45)}) {$\partial \cap_V$};
+  \node at ({1.15*\Radius*cos(45)}, {1.15*\Radius*sin(45)}) {$\textrm{d} \cap_S$};
+  \node at ({0.75*\Radius*cos(45)}, {0.75*\Radius*sin(45)}) [color=purple] {$\textrm{d} \cap_V$};
   % Draw dashed zero line
   \draw [dashed, thick] (-\Radius,0) -- (\Radius,0);
   % Draw the kernel W
@@ -276,6 +276,9 @@ alpha_D_3d = 21/(16*pi*h**3))
   \def\OuterRadius{3}
   \def\InnerRadius{1}
 
+  \draw [draw=none, fill=gray, fill opacity=0.05] (1.85*-\OuterRadius,1.85*-\OuterRadius) rectangle (1.85*\OuterRadius,1.85*\OuterRadius);
+  \draw [dashed] (1.85*-\OuterRadius,1.85*-\OuterRadius) rectangle (1.85*\OuterRadius,1.85*\OuterRadius);
+
   % Draw the outer circle with a dashed border
   \draw [thick, dashed, fill=pink, fill opacity=0.5] (0,0) circle (\OuterRadius);
 
@@ -296,9 +299,10 @@ alpha_D_3d = 21/(16*pi*h**3))
   \node [label=below:Origin, inner sep=2pt] at (origin) {};
 
   % Draw volume labels
-  \node at ({1.25*\OuterRadius*cos(45)}, {1.25*\OuterRadius*sin(45)}) {$\partial \cap_S$};
-  \node at ({0.80*\OuterRadius*cos(45)}, {0.80*\OuterRadius*sin(45)}) [color=purple] {$\partial \cap_V$};
-  \node at ({1.75*\InnerRadius}, 0) [color=orange] {$\partial \cap_i$};
+  \node at ({2*\OuterRadius*cos(45)}, {2*\OuterRadius*sin(45)})  {$\cap$};
+  \node at ({1.25*\OuterRadius*cos(45)}, {1.25*\OuterRadius*sin(45)}) {$\textrm{d} \cap_S$};
+  \node at ({0.80*\OuterRadius*cos(45)}, {0.80*\OuterRadius*sin(45)}) [color=purple] {$\textrm{d} \cap_V$};
+  \node at ({1.75*\InnerRadius}, 0) [color=orange] {$\textrm{d} \cap_i$};
 
 \end{tikzpicture}
 </script>
