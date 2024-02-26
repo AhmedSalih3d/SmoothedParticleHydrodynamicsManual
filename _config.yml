@@ -3,3 +3,6 @@ show_downloads: false
 theme: jekyll-theme-minimal
 repository: AhmedSalih3d/SmoothedParticleHydrodynamicsManual
 #absolute_url: "https://ahmedsalih3d.github.io/SmoothedParticleHydrodynamicsManual/"
+url: "https://ahmedsalih3d.github.io" # The base hostname & protocol for your site
+baseurl: "/SmoothedParticleHydrodynamicsManual" # the subpath of your site, e.g. /blog
+
