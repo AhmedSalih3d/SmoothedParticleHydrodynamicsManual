@@ -289,10 +289,10 @@ alpha_D_3d = 21/(16*pi*h**3))
   \node [label=below:$i$, inner sep=2pt] at (i) {};
   \node [label=above:$A(\mathbf{x})_i$, inner sep=2pt] at (i) {};
 
-  \node [circle, fill=orange, inner sep=2pt, below] (origin) at (-5,-5) {}; 
-  \draw [very thick, ->] (origin) -- (0,0) node [midway, above, sloped, fill=none] {$\mathbf{x}$};
-  \draw [very thick, ->] (origin) -- (-3,-5) node [midway, above, sloped] {};
-  \draw [very thick, ->] (origin) -- (-5,-3) node [midway, above, sloped] {};
+  \node [circle, fill=none, inner sep=2pt, below] (origin) at (-5,-5) {}; 
+  \draw [very thick, ->] (-5,-5) -- (0,0) node [midway, above, sloped, fill=none] {$\mathbf{x}$};
+  \draw [very thick, ->] (-5,-5) -- (-3,-5) node [midway, above, sloped] {};
+  \draw [very thick, ->] (-5,-5) -- (-5,-3) node [midway, above, sloped] {};
   \node [label=below:Origin, inner sep=2pt] at (origin) {};
 
   % Draw volume labels
