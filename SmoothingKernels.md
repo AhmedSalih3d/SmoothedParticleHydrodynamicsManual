@@ -4,6 +4,7 @@ The smoothing kernel is a corner stone of the SPH methodology. It describes the 
 
 1. What is a smoothing kernel
 2. What properties does a smoothing kernel have
+3. Different kind of smoothing kernels
 
 
 ## Example of a smoothing kernel
@@ -107,3 +108,8 @@ In practical terms, since the aim is to simulate physics, some practical conside
 
 For the first point, the "ground truth" is often taken as a spherical support domain for the kernel, i.e. a spherical volume around the material point. In theory a box with equal side lengths would fulfill the criteria as well, but the added complexity does not seem to provide any real benefits. The list of considerations above are not necessarily mathematical. For example it is indeed possible to define a kernel fulfilling the mathematical criterias, but violating some of the items mentionedh here. One example of why these considerations still are of utmost importance, is that when later, the density estimation through the kernel operator will be discussed, it is clear that a kernel violating the criteria of positive weighting values will lead to negative density values! This of course goes against the physics intended to be modelled.
 
+## Different kinds of smoothing kernels
+
+1) Gaussian kernel
+2) Wendland Quintic kernel
+3) Spline kernels
