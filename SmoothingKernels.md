@@ -248,7 +248,7 @@ alpha_D_3d = 21/(16*pi*h**3))
   \node at ({1.15*\Radius*cos(45)}, {1.15*\Radius*sin(45)}) {$\partial \cap_S$};
   \node at ({0.75*\Radius*cos(45)}, {0.75*\Radius*sin(45)}) {$\partial \cap_V$};
   % Draw dashed zero line
-  \draw [dashed, thick, ->] (-\Radius,0) -- (\Radius,0);
+  \draw [dashed, thick] (-\Radius,0) -- (\Radius,0);
   % Draw the kernel W
   \draw [thick, ->] (0,0) -- (0,{\Radius*(2/3)}) node [right, fill=none] {$W$};
   % Draw the q vector
@@ -267,6 +267,39 @@ alpha_D_3d = 21/(16*pi*h**3))
   % Draw Wendland quintic kernel, aD = 2
   \draw [thick, domain=0:2, smooth, variable=\q, -] plot ({\q*\Radius/2}, {2*pow(1-\q/2,4)*(2*\q+1)});
   \draw [thick, domain=0:2, smooth, variable=\q, -] plot ({-\q*\Radius/2}, {2*pow(1-\q/2,4)*(2*\q+1)});
+\end{tikzpicture}
+</script>
+
+<script type="text/tikz">
+\begin{tikzpicture}[font=\huge]
+  % Define radius of the circles
+  \def\OuterRadius{3}
+  \def\InnerRadius{1}
+
+  % Draw the outer circle with a dashed border
+  \draw [thick, dashed, fill=pink, fill opacity=0.5] (0,0) circle (\OuterRadius);
+
+  % Draw the inner square with a gradient
+  \draw [draw=none, fill=orange, fill opacity=0.5] (-\InnerRadius,-\InnerRadius) rectangle (\InnerRadius,\InnerRadius);
+  \draw [dashed] (-\InnerRadius,-\InnerRadius) rectangle (\InnerRadius,\InnerRadius);
+
+  % Create nodes i and j with names for referencing
+  \node [circle, fill=green, inner sep=2pt] (i) at (0,0) {}; % Name this node (i)
+  % Label for node i
+  \node [label=below:$i$, inner sep=2pt] at (i) {};
+  \node [label=above:$A(\mathbf{x})_i$, inner sep=2pt] at (i) {};
+
+  \node [circle, fill=orange, inner sep=2pt, below] (origin) at (-5,-5) {}; 
+  \draw [very thick, ->] (origin) -- (0,0) node [midway, above, sloped, fill=none] {$\mathbf{x}$};
+  \draw [very thick, ->] (origin) -- (-3,-5) node [midway, above, sloped] {};
+  \draw [very thick, ->] (origin) -- (-5,-3) node [midway, above, sloped] {};
+  \node [label=below:Origin, inner sep=2pt] at (origin) {};
+
+  % Draw volume labels
+  \node at ({1.25*\OuterRadius*cos(45)}, {1.25*\OuterRadius*sin(45)}) {$\partial \cap_S$};
+  \node at ({0.80*\OuterRadius*cos(45)}, {0.80*\OuterRadius*sin(45)}) [color=purple] {$\partial \cap_V$};
+  \node at ({1.75*\InnerRadius}, 0) [color=orange] {$\partial \cap_i$};
+
 \end{tikzpicture}
 </script>
 
