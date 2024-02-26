@@ -1,3 +1,6 @@
+---
+layout: default
+---
 # Smoothing Kernels
 
 The smoothing kernel is a corner stone of the SPH methodology. It describes the weighting between material points and thereby affects every single step of a simulation. It is the approximation of the dirac-delta identity and without it, this form of the numerical method would not be achievable. This section seeks to answer the following questions.
