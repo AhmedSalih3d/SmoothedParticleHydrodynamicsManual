@@ -33,7 +33,7 @@ $$
 Where $\alpha_D$ is equal to $\frac{7}{4\pi h^2}$ in 2D and  $\frac{21}{16\pi h^3}$ in 3D. To visualize the impact of a kernel a graphic is shown. 
 
 {% figure caption:"Graph of the Wendland kernel showcasing the weighting influence as a function of the normalized distance between material points" label:plot_kernel %}
-<div id="KernelPlot" style="width: 680px; height: 400px; margin-left: 200px;">
+<div id="KernelPlot" style="width: 680px; height: 400px;">
 <script type="text/tikz">
   \pgfmathsetseed{1234}
   \colorlet{purple}{blue!50!red!80!black!80}
@@ -269,7 +269,7 @@ Which is the correct values for the Wendland Quintic kernel according to littera
 
 <!-- Plot container -->
 {% figure caption:"Comparison of kernels showcasing the weighting influence as a function of the normalized distance between material points. The normalization constant is artificially set to one for all cases, to visually the function flow. Since all of them have unique normalization constants, a comparison using an actual specific value of the smoothing length, would be more accurate." label:plot_kernelcomparison %}
-<div id="KernelComparisonPlot" style="width: 680px; height: 400px; margin: auto;"></div>
+<div id="KernelComparisonPlot" style="width: 480px; height: 400px; margin: auto;"></div>
 <script>
     // Define the Gaussian kernel function
 function gaussianKernel(q, alphaD) {
