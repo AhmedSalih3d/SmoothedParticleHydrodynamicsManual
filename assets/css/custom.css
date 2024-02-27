@@ -564,4 +564,22 @@
     }
   }
   
+.back-to-home {
+  position: fixed;
+  bottom: -20px; /* Tucked in */
+  right: 20px;
+  background-color: #007bff; /* Example color */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: all 0.5s ease; /* Smooth transition for hover effect */
+  cursor: pointer;
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+.back-to-home:hover {
+  bottom: 20px; /* Raise up on hover */
+}
+
+
   /*# sourceMappingURL=style.css.map */

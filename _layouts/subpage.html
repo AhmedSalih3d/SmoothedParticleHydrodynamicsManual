@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ 'assets/css/custom.css' | relative_url }}">
     <link rel="stylesheet" href="{{ 'assets/css/github_code.css' | relative_url }}">
     <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- for buttons -->
     <script src="https://tikzjax.com/v1/tikzjax.js"></script>
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -71,11 +72,18 @@
       {{ content }}
 
       </section>
-      <!-- <footer>
-        {% if site.github.is_project_page %}
+      <footer>
+        <!-- {% if site.github.is_project_page %}
         <p>This project is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
         {% endif %}
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p> -->
+        <!-- Back to Home Button -->
+      <!-- Back to Home Button -->
+      <div class="back-to-home">
+        <a href="{{ site.baseurl }}/">
+          <i class="fas fa-home"></i> Home
+        </a>
+      </div>
       </footer>
     </div>
     <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
