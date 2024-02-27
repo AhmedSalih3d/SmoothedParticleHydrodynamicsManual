@@ -267,6 +267,8 @@ Which is the correct values for the Wendland Quintic kernel according to littera
 
 ### Comparison of kernels
 
+Below a plot highlighting the differences bewteen kernel functions when $\alpha_D$ is equal to one is presented. A cut-off of two is used as is common in computational fluid dynamics CFD codes. The aim is to highlight that the choice of kernel *does* affect simulation results. Especially when taking the gradient of the kernel into consideration. 
+
 <!-- Plot container -->
 {% figure caption:"Comparison of kernels showcasing the weighting influence as a function of the normalized distance between material points. The normalization constant is artificially set to one for all cases, to visually the function flow. Since all of them have unique normalization constants, a comparison using an actual specific value of the smoothing length, would be more accurate." label:plot_kernelcomparison %}
 <div id="KernelComparisonPlot" style="width: 480px; height: 400px; margin: auto;"></div>

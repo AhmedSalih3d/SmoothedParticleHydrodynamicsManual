@@ -504,9 +504,9 @@
     -webkit-font-smoothing: subpixel-antialiased;
   }
   
-  @media print, screen and (max-width: 960px) {
+  @media print, screen and (max-width: 60px) {
     div.wrapper {
-      width: auto;
+      width: 90px;
       margin: 0;
     }
     header, section, footer {
