@@ -9,9 +9,11 @@ This manual intends to cover the various topics necessary for gaining an in-dept
 
 * [Quick intro of SPH]
 * [Commericial Software]
+* [Deriving SPH](DerivingSPH.html)
 * [Particle Discretization](ParticleDiscretization.html)
 * [Smoothing Kernels](SmoothingKernels.html)
 * [Property estimation]
 * [Derivatives of the Smoothing Kernel]
 * [Improving property estimation]
 * [Modelling the Navier-Stokes Equation]
+
